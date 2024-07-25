@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.bankaya</groupId>
 	<artifactId>pokemon-test</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.0</version>
 	<packaging>war</packaging>
 	<name>pokemon-test</name>
 	<description>Test project</description>

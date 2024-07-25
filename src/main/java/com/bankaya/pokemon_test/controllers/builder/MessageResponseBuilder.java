@@ -9,24 +9,24 @@ public final class MessageResponseBuilder {
 
     private MessageResponseBuilder() { }
 
-    public static ResponseEntity<MessageResponse> success(Object item) {
+    public static <T> ResponseEntity<MessageResponse<T>> success(T item) {
         return ResponseEntity.ok(
-                MessageResponse.builder()
-                    .code(HttpStatus.OK.value())
-                    .message("Success")
-                    .data(item)
-                    .build()
+                MessageResponse.<T>builder()
+                        .message("Success")
+                        .code(HttpStatus.OK.value())
+                        .data(item)
+                        .build()
         );
     }
 
-    public static ResponseEntity<MessageResponse> error(PokemonBankayaException e) {
+    public static <T> ResponseEntity<MessageResponse<T>> error(PokemonBankayaException e) {
         return ResponseEntity
                 .status(e.getStatusCode())
                 .body(
-                        MessageResponse.builder()
-                            .code(e.getStatusCode())
-                            .message(e.getMessage())
-                            .build()
+                        MessageResponse.<T>builder()
+                                .message("Success")
+                                .code(HttpStatus.OK.value())
+                                .build()
                 );
     }
 }

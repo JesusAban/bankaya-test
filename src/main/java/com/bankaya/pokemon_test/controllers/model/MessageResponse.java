@@ -1,13 +1,13 @@
 package com.bankaya.pokemon_test.controllers.model;
 
-import lombok.*;
-import lombok.experimental.Accessors;
+import lombok.Getter;
+import lombok.Builder;
 
 @Builder
 @Getter
-public class MessageResponse {
+public class MessageResponse<T> {
 
-    private Object data;
+    private T data;
     private String message;
     private int code;
 
