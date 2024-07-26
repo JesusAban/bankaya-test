@@ -7,12 +7,14 @@ import org.springframework.http.ResponseEntity;
 
 public final class MessageResponseBuilder {
 
+    public static final String SUCCESS = "Success";
+
     private MessageResponseBuilder() { }
 
     public static <T> ResponseEntity<MessageResponse<T>> success(T item) {
         return ResponseEntity.ok(
                 MessageResponse.<T>builder()
-                        .message("Success")
+                        .message(SUCCESS)
                         .code(HttpStatus.OK.value())
                         .data(item)
                         .build()
@@ -24,8 +26,8 @@ public final class MessageResponseBuilder {
                 .status(e.getStatusCode())
                 .body(
                         MessageResponse.<T>builder()
-                                .message("Success")
-                                .code(HttpStatus.OK.value())
+                                .message(e.getMessage())
+                                .code(e.getStatusCode())
                                 .build()
                 );
     }

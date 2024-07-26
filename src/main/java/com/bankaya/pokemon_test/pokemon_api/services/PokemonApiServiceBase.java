@@ -1,12 +1,11 @@
 package com.bankaya.pokemon_test.pokemon_api.services;
 
 import com.bankaya.pokemon_test.exceptions.PokemonBankayaException;
-import com.bankaya.pokemon_test.pokemon_api.models.PokemonLocationAreaItem;
+import com.bankaya.pokemon_test.pokemon_api.services.constants.PokemonApiServiceBaseMessage;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
@@ -29,11 +28,13 @@ public abstract class PokemonApiServiceBase<T> {
         try {
             ResponseEntity<T> entity = restTemplate.getForEntity(newPath, classType);
             return entity.getBody();
-        } catch (HttpClientErrorException e) {
-            String message = String.format("Error trying to consume: %s, message: %s", newPath, e.getMessage());
-            throw new PokemonBankayaException(message, e.getStatusCode().value());
+        } catch (HttpClientErrorException ex) {
+            ex.printStackTrace();
+            String message = String.format(PokemonApiServiceBaseMessage.ERROR_TRYING_TO_CONSUME_API, newPath, ex.getMessage());
+            throw new PokemonBankayaException(message, ex.getStatusCode().value());
         } catch (Exception e) {
-            String message = String.format("Error trying to consume: %s, message: %s", newPath, e.getMessage());
+            e.printStackTrace();
+            String message = String.format(PokemonApiServiceBaseMessage.ERROR_TRYING_TO_CONSUME_API, newPath, e.getMessage());
             throw new PokemonBankayaException(message, HttpStatus.INTERNAL_SERVER_ERROR.value());
         }
     }
@@ -47,9 +48,14 @@ public abstract class PokemonApiServiceBase<T> {
             ResponseEntity<T[]> entity = restTemplate.getForEntity(newPath, classType);
 
             return Arrays.asList(Objects.requireNonNull(entity.getBody()));
+        } catch (HttpClientErrorException ex) {
+            ex.printStackTrace();
+            String message = String.format(PokemonApiServiceBaseMessage.ERROR_TRYING_TO_CONSUME_API, newPath, ex.getMessage());
+            throw new PokemonBankayaException(message, ex.getStatusCode().value());
         } catch (Exception e) {
-            String message = String.format("Error trying to consume: %s, message: %s", newPath, e.getMessage());
-            throw new PokemonBankayaException(message);
+            e.printStackTrace();
+            String message = String.format(PokemonApiServiceBaseMessage.ERROR_TRYING_TO_CONSUME_API, newPath, e.getMessage());
+            throw new PokemonBankayaException(message, HttpStatus.INTERNAL_SERVER_ERROR.value());
         }
     }
 

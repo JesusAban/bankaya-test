@@ -1,6 +1,6 @@
 package com.bankaya.pokemon_test.pokemon_api.locationAreaEncounter.models;
 
-import com.bankaya.pokemon_test.pokemon_api.models.PokemonLocationAreaItem;
+import com.bankaya.pokemon_test.pokemon_api.locationArea.models.PokemonLocationAreaDTO;
 import lombok.Builder;
 import lombok.Getter;
 
@@ -10,6 +10,6 @@ import java.util.List;
 @Getter
 public class PokemonEncounterResponse {
 
-    private List<PokemonLocationAreaItem> locationAreaEncounters;
+    private List<PokemonLocationAreaDTO> locationAreaEncounters;
 
 }

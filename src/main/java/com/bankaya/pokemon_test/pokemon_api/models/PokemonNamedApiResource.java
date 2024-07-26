@@ -8,6 +8,5 @@ import lombok.Setter;
 public class PokemonNamedApiResource {
 
     private String name;
-    //private String url;
 
 }
