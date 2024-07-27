@@ -1,0 +1,33 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+    <changeSet id="20240724231905-1" author="jesus-aban">
+        <createTable tableName="logs">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false" />
+            </column>
+            <column name="date" type="timestamp">
+                <constraints nullable="false" />
+            </column>
+            <column name="source_ip" type="varchar(100)">
+                <constraints nullable="false" />
+            </column>
+            <column name="method" type="varchar(10)">
+                <constraints nullable="false" />
+            </column>
+            <column name="url_request" type="varchar(150)">
+                <constraints nullable="false" />
+            </column>
+            <column name="status_code" type="int">
+                <constraints nullable="false" />
+            </column>
+            <column name="execution_time" type="varchar(20)">
+                <constraints nullable="false" />
+            </column>
+            <column name="response" type="text">
+                <constraints nullable="true" />
+            </column>
+        </createTable>
+        <addAutoIncrement tableName="logs" columnName="id" columnDataType="bigint(20)"/>
+    </changeSet>
+</databaseChangeLog>
