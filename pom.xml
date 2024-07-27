@@ -8,29 +8,19 @@
 		<version>3.3.2</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
+
 	<groupId>com.bankaya</groupId>
 	<artifactId>pokemon-test</artifactId>
 	<version>1.0.0</version>
-	<packaging>war</packaging>
+	<packaging>jar</packaging>
 	<name>pokemon-test</name>
 	<description>Test project</description>
-	<url/>
-	<licenses>
-		<license/>
-	</licenses>
-	<developers>
-		<developer/>
-	</developers>
-	<!--<scm>
-		<connection/>
-		<developerConnection/>
-		<tag/>
-		<url/>
-	</scm>-->
+
 	<properties>
 		<java.version>17</java.version>
 		<mockito.version>5.12.0</mockito.version>
 	</properties>
+
 	<dependencies>
 		<dependency>
 			<groupId>org.springdoc</groupId>
@@ -60,6 +50,7 @@
 		<dependency>
 			<groupId>com.mysql</groupId>
 			<artifactId>mysql-connector-j</artifactId>
+			<version>8.3.0</version>
 			<scope>runtime</scope>
 		</dependency>
 
